@@ -1,0 +1,31 @@
+body {
+  background-color: lightskyblue;
+  color: black;
+  margin: 50px;
+}
+
+h1 {
+  color: black;
+  text-align: center;
+}
+
+.navigation-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+img {
+  width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+}
