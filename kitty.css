@@ -7,16 +7,28 @@ body {
 h1 {
   color: black;
   text-align: center;
+  font-family: "Vidaloka", serif;
+  font-size: 120px;
 }
 
-.navigation-container {
+.jumbotron {
+  background-color: lightskyblue;
+}
+
+.img1 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100px;
+}
+
+/*.navigation-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-}
+}*/
 
-img {
-  width: 500px;
+.img2 {
   display: block;
   margin-left: auto;
   margin-right: auto;
