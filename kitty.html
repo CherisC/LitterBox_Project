@@ -15,21 +15,33 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="kitty.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    
-    <script defer src=index.js></script>
   </head>
   <body>
-    <div class="container">
+    <div id="modal">
+      <div>
+        <button id="close">X</button>
+        <div id="firebaseui-auth-container"></div>
+      </div>
+    </div>
+    <div class="container" id="main">
       <div class="jumbotron">
         <div id="catgraphic">
           <img src="cat graphic.png" alt="Cat Icon" class="image1" />
         </div>
         <h1>LitterBox</h1>
       </div>
+      <div id="button">
+        <button type="button" id="sign-in" class="btn btn-primary">Sign-In
+        </button>
+      </div>
       
-      <!-- below is where the picture and cat fact are rendered-->
-      <div id="catBox">
+      <div class="image-container">
+        <img src="cat-pic.jpg" alt="Cat Image" class="image2" />
+      </div>
+       <!-- below is where the picture and cat fact are rendered-->
+       <div id="catBox">
         
       </div>
 
@@ -44,9 +56,19 @@
       <div id="button">
         <button type="button" class="btn btn-primary" id="generate">New Cat</button>
       </div>
+      <div class="fact-container">
+        <p>Display cat fact here.</p>
+      </div>
 
-
+      <div id="button">
+        <button type="button" class="btn btn-primary">Refresh</button>
+      </div>
     </div>
-    <script src="kitty.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+         
+        <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
+        <script src="firebase.js"></script>
+        <script src="index.js"></script>
   </body>
 </html>
