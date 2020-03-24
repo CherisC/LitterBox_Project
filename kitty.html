@@ -15,6 +15,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="kitty.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <script defer src=index.js></script>
   </head>
   <body>
     <div class="container">
@@ -24,18 +27,25 @@
         </div>
         <h1>LitterBox</h1>
       </div>
+      
+      <!-- below is where the picture and cat fact are rendered-->
+      <div id="catBox">
+        
+      </div>
 
-      <div class="image-container">
+      <!-- <div class="image-container">
         <img src="cat-pic.jpg" alt="Cat Image" class="image2" />
       </div>
 
       <div class="fact-container">
         <p>Display cat fact here.</p>
-      </div>
+      </div> -->
 
       <div id="button">
-        <button type="button" class="btn btn-primary">Refresh</button>
+        <button type="button" class="btn btn-primary" id="generate">New Cat</button>
       </div>
+
+
     </div>
     <script src="kitty.js"></script>
   </body>
