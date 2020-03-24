@@ -1,3 +1,8 @@
+var app = firebase.initializeApp(firebaseConfig);
+var db = app.firestore();
+
+var catsRef = db.collection("Cats");
+
 window.addEventListener("DOMContentLoaded", event => {
     console.log("DOM fully loaded and parsed");
   
