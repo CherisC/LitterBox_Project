@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myLitterBox</title>
+    <style>
+      body {
+          background-image: url('pawprints.jpeg');
+          margin: 0px;
+      }
+      img {
+        opacity: 0.1;
+      }
+      #container {
+        width: 100vw; 
+        height: 100vh;
+        background-color: rgba(178, 224, 240, 0.892);
+      }
+  
+    </style>
 </head>
 <body>
     <a href="kitty.html">&larr;</a>
@@ -15,5 +30,11 @@
         <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
         <script src="firebase.js"></script>
         <script src="index.js"></script>
+    <div id='container'>
+      Some text
+    </div>
 </body>
 </html>
+<!---May need to do another CSS page to get different styling on this page-->
+<!--Added background pawprint. Still working with transparency property so that-->
+<!--other elements added to the page stand out and it looks good.-->
