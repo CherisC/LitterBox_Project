@@ -6,7 +6,7 @@
  var currentUser = firebase.auth().currentUser;
  var clickedImage;
  
- 
+ console.log(currentUser);
  // query database on page load and load comments if picture has been
  // commented on before 
  queryDatabase().then(function(data) {

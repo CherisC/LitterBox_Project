@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Litter Box</title>
     <script src="apiKeys.js"></script>
-</head>
+
 <style>
     body {
         background-image: url('pawprints.jpeg');
@@ -21,11 +21,10 @@
     }
 
   </style>
-
-<!---May need to do another CSS page to get different styling on this page-->
-<!--Added background pawprint. Still working with transparency property so that-->
-<!--other elements added to the page stand out and it looks good.-->
+</head>
 <body>
+  <a href="kitty.html">&larr;</a>
+    <div id="myLitterBox">Meow</div>
     <div id="container">
         <div id="innerContainer" style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
             
@@ -41,6 +40,7 @@
         </div>
     </div>
     
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
