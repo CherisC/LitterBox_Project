@@ -3,38 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>myLitterBox</title>
-    <style>
-      body {
-          background-image: url('pawprints.jpeg');
-          margin: 0px;
-      }
-      img {
-        opacity: 0.1;
-      }
-      #container {
-        width: 100vw; 
-        height: 100vh;
-        background-color: rgba(178, 224, 240, 0.892);
-      }
-  
-    </style>
+    <title>My Litter Box</title>
+    <script src="apiKeys.js"></script>
+
+<style>
+    body {
+        background-image: url('pawprints.jpeg');
+        margin: 0px;
+    }
+    img {
+      opacity: 0.1;
+    }
+    #container {
+      width: 100vw; 
+      height: 100vh;
+      background-color: rgba(178, 224, 240, 0.892);
+    }
+
+  </style>
 </head>
 <body>
-    <a href="kitty.html">&larr;</a>
+  <a href="kitty.html">&larr;</a>
     <div id="myLitterBox">Meow</div>
-
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-         
-        <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
-        <script src="firebase.js"></script>
-        <script src="index.js"></script>
-    <div id='container'>
-      Some text
+    <div id="container">
+        <div id="innerContainer" style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+            
+        </div>
+        <div style="display: flex; justify-content: center; margin: 20px 0 20px 0">
+            <form action="" id="commentForm" style="display: flex; flex-direction: column;">
+                <textarea id="textarea-container" name="commentText" id="" cols="30" rows="10" placeholder="Add a comment"></textarea>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+        <a href="kitty.html" style="display: flex; justify-content: center;">Go back to Search Page</a>  
+        <div class="comments" id="comments" style="display: flex; flex-direction: column; justify-content: space-between;">
+        </div>
     </div>
+    
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+    <script src="myLitterBox.js"></script>
 </body>
 </html>
-<!---May need to do another CSS page to get different styling on this page-->
-<!--Added background pawprint. Still working with transparency property so that-->
-<!--other elements added to the page stand out and it looks good.-->
