@@ -3,25 +3,43 @@
  var db = app.firestore();
  
  var catsRef = db.collection("Cats");
+ var currentUser = firebase.auth().currentUser;
+ var clickedImage;
+ 
  
  // query database on page load and load comments if picture has been
  // commented on before 
  queryDatabase().then(function(data) {
-     if(data.docs.length) {
-         displayComments(data.docs[0].id);
-     }
+      if(data.docs.length) {
+        var imageArray = [];
+        var documentArray = [];
+        data.forEach(function(doc) {
+            imageArray.push(doc.data().imageUrl);
+            documentArray.push(doc.id);
+        });
+        displayLitterBox(imageArray, documentArray);
+        displayComments(documentArray);
+    }
  })
+
+ function displayLitterBox(imageArray, documentArray) {
+     var index = 0;
+     var displayedImages = imageArray.map(function(image) {
+        return `<div>
+        <img src="${image}" width="200" height="200" onclick="commentOnImage('${documentArray[index]}')">
+        <div id="img-${documentArray[index++]}"></div>
+        </div>`
+     })
+    
+     document.getElementById("innerContainer").innerHTML = displayedImages.join("");
+ }
  
  function queryDatabase() {
      var promise = new Promise(function(resolve, reject) {
-         catsRef.where("imageUrl", "==", "www.google.com")
+         catsRef.where("userID", "==", "tim")
          .get()
          .then(function(querySnapshot) {
              resolve(querySnapshot)
-         /* querySnapshot.forEach(function(doc) {
-             // doc.data() is never undefined for query doc snapshots
-             console.log(doc.id, " => ", doc.data());
-         }); */
          })
          .catch(function(error) {
              reject("Error getting documents: ", error);
@@ -35,7 +53,8 @@
          fact: data.fact,
          imageUrl: data.imageUrl,
          name: data.name,
-         comments: [data.comment]
+         comments: [data.comment],
+         userID: currentUser.uid
      }).then(function(docRef) {
          displayComments(docRef.id);
      }).catch(function(error) {
@@ -49,23 +68,31 @@
      catsRef.doc(docID).update({
      comments: firebase.firestore.FieldValue.arrayUnion(comment)
      });
-     displayComments(docID);
+     displayComments([docID]);
+ }
+ 
+ function displayComments(documentArray) {
+    documentArray.forEach(function(document) {
+        displayComment(document);
+    });
  }
  
  
- 
-  function displayComments(docID) {
-     catsRef.doc(docID).get()
-     .then(function(doc) {
+  function displayComment(docID) {
+        catsRef.doc(docID).get()
+        .then(function(doc) {
          var commentsHTML = doc.data().comments.map(function(comment) {
              return `<div class="comment">${comment}
              </div>`;
          });
-         document.getElementById('comments').innerHTML = commentsHTML.join('');
+         document.getElementById(`img-${docID}`).innerHTML = commentsHTML.join('');
      });
  }
  
- 
+ function commentOnImage(imgID) {
+    clickedImage = imgID;
+ }
+
  var commentForm = document.getElementById('commentForm');
  
  commentForm.addEventListener('submit', function(event) {
@@ -75,19 +102,20 @@
      if (commentText == '') {
          return;
      }
- 
-     var data = {
+     
+     /* var data = {
          fact: "cats are cool",
-         imageUrl: "www.google.com",
+         imageUrl: catImage,
          name: "fifo",
          comment: commentText
-     }
+     } */
  
      queryDatabase().then(function(queryResult) {
          if(queryResult.docs.length === 0) {
              addCatToDatabase(data);
          } else {
-             addComments(queryResult.docs[0].id, data.comment);
+              addComments(clickedImage, commentText);
+              event.target.elements.commentText.value = "";
          }
      })
      
