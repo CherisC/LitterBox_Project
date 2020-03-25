@@ -21,20 +21,27 @@
     </style>
 </head>
 <body>
-    <a href="kitty.html">&larr;</a>
-    <div id="myLitterBox">Meow</div>
-
+  <div id="container">
+    <!---changed the sign-in button to say "back to home page"-->
+    <!---linked the <a href="index.html">back to home page</a> button--->
+    <!--moved the container div to include the entire page--->
+    <!--changed text color in button to black-->
+    
+    <div id="button">
+        <button type="button" id="sign-in" class="btn btn-primary"><a href="index.html" style="color: black;">back to home page</a> 
+              </button>
+    </div>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
          
         <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
         <script src="firebase.js"></script>
         <script src="index.js"></script>
-    <div id='container'>
-      Some text
-    </div>
+    
+      
+  </div>  
 </body>
 </html>
 <!---May need to do another CSS page to get different styling on this page-->
 <!--Added background pawprint. Still working with transparency property so that-->
-<!--other elements added to the page stand out and it looks good.-->
+<!--changed transparency of page for other elements to show up better-->
