@@ -6,18 +6,22 @@
     <title>My Litter Box</title>
     <script src="apiKeys.js"></script>
 
-<style>
+  <style>
     body {
-        background-image: url('pawprints.jpeg');
+        /*background-image: url('pawprints.jpeg');*/
         margin: 0px;
     }
-    img {
+    /*img {
       opacity: 0.1;
-    }
+    }*/
     #container {
       width: 100vw; 
       height: 100vh;
       background-color: rgba(178, 224, 240, 0.892);
+      background-image: url('pawprints.jpeg');
+      opacity: 0.1;
+      
+      ;
     }
 
   </style>
@@ -29,27 +33,31 @@
     <!--moved the container div to include the entire page--->
     <!--changed text color in button to black-->
     
-    <div id="button">
+    <!--<div id="button">
         <button type="button" id="sign-in" class="btn btn-primary"><a href="index.html" style="color: black;">back to home page</a> 
               </button>
-    </div>
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    </div>--->
+    <!--<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
          
         <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
-        <script src="firebase.js"></script>
+        <script src="firebase.js"></script>--->
         <script src="index.js"></script>
     
       
-  </div>  
+  <!--</div>  
 </body>
 </html>
+  <div id="container">--->
 <!---May need to do another CSS page to get different styling on this page-->
 <!--Added background pawprint. Still working with transparency property so that-->
 <!--changed transparency of page for other elements to show up better-->
-  <a href="kitty.html">&larr;</a>
+<div id="button">
+  <button type="button" id="sign-in" class="btn btn-primary"><a href="index.html" style="color: black;">back to home page</a> 
+        </button>
+</div>
     <div id="myLitterBox">Meow</div>
-    <div id="container">
+    
         <div id="innerContainer" style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
             
         </div>
@@ -59,7 +67,7 @@
                 <button class="btn btn-primary" type="submit">Submit</button>
             </form>
         </div>
-        <a href="kitty.html" style="display: flex; justify-content: center;">Go back to Search Page</a>  
+        <!--<a href="index.html" style="display: flex; justify-content: center; color: black;">Go back to Search Page</a>--->  
         <div class="comments" id="comments" style="display: flex; flex-direction: column; justify-content: space-between;">
         </div>
     </div>
@@ -69,5 +77,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
     <script src="myLitterBox.js"></script>
+
+  </div>
 </body>
 </html>
+<!---changed kitty.html to index.html in Search box-->
+<!--remove the "Go back to Search" button to leave one "return to home page button"-->
