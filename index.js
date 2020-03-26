@@ -32,6 +32,7 @@ window.addEventListener("DOMContentLoaded", event => {
   //Code for auth flow
   firebase.auth().onAuthStateChanged(function(user) {
     const signInButton = document.getElementById('sign-in');
+    const addCatButton = document.getElementById('add-cat');
     if (user) {
       // User is signed in.
       if(signInButton){
@@ -40,6 +41,12 @@ window.addEventListener("DOMContentLoaded", event => {
           firebase.auth().signOut().then(() =>{
               this.innerHTML = 'Sign In'
           })
+        })
+      }
+      if(addCatButton) {
+        addCatButton.disabled = false;
+        addCatButton.addEventListener("click", function() {
+          addCatToDatabase(user);
         })
       }
       // Once this fires it means we have successfully found a user and we should be on our myLitterBox.html page now.
@@ -172,4 +179,18 @@ function displayComments(docID) {
 		});
 		document.getElementById('comments').innerHTML = commentsHTML.join('');
 	});
+}
+
+function addCatToDatabase(user) {
+  catsRef.add({
+      imageUrl: document.getElementById("cat-image").getAttribute("src"),
+      comments: [],
+      userID: user.uid
+  }).then(function(docRef) {
+    console.log("Added cat to database");
+      displayComments(docRef.id);
+  }).catch(function(error) {
+      console.error("Error adding document: ", error);
+      return error;
+  });
 }
