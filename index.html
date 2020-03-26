@@ -10,6 +10,8 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="apiKeys.js"></script>
     <link
       href="https://fonts.googleapis.com/css?family=DM+Serif+Display|Rozha+One|Vidaloka&display=swap"
       rel="stylesheet"
@@ -37,9 +39,9 @@
         </button>
       </div>
       
-      <div class="image-container">
+      <!-- <div class="image-container">
         <img src="cat-pic.jpg" alt="Cat Image" class="image2" />
-      </div>
+      </div> -->
        <!-- below is where the picture and cat fact are rendered-->
        <div id="catBox">
         
@@ -64,11 +66,14 @@
         <button type="button" class="btn btn-primary">Refresh</button>
       </div>
     </div>
+    <div id="comments" class="comments">
+
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-         
-        <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
-        <script src="firebase.js"></script>
-        <script src="index.js"></script>
+    <script src="firebase.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
