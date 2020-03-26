@@ -123,8 +123,8 @@ function change() {
       <div class="container"> 
         <div class="row">
             <div class="col">
-            
             </div>
+            
             <div class="col">
             <img id="cat-image" src="${catImgUrl}" class="rounded mx-auto d-block" alt="catImage">
             <h3 class="text-center">${catFact}</h3>
