@@ -1,3 +1,8 @@
+var app = firebase.initializeApp(firebaseConfig);
+var db = app.firestore();
+
+var catsRef = db.collection("Cats");
+
 window.addEventListener("DOMContentLoaded", event => {
     console.log("DOM fully loaded and parsed");
         var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -97,6 +102,7 @@ function change() {
   ]).then(response => {
     console.log(response);
     var catImgUrl = response[0].data[0].url;
+    localStorage.setItem("retrievedImage", catImgUrl);
     var index = randomNumber(0, response[1].data.all.length);
     var catFact = response[1].data.all[index].text;
     console.log({ img: catImgUrl, fact: catFact });
@@ -108,8 +114,8 @@ function change() {
         <div class="row">
             <div class="col-8">
             </div>
-            <div class="col-8">
-            <img src="${catImgUrl}" class="rounded mx-auto" alt="catImage">
+            <div class="col">
+            <img id="cat-image" src="${catImgUrl}" class="rounded mx-auto d-block" alt="catImage">
             <h3 class="text-center">${catFact}</h3>
             </div>
             <div "col-8">
@@ -118,5 +124,48 @@ function change() {
       </div>
 
             `;
+            return catImgUrl;
+  }).then(function(img) {
+      // query database on page load and load comments if picture has been
+      // commented on before 
+      queryDatabase(img).then(function(data) {
+	    if(data.docs.length) {
+		  displayComments(data.docs[0].id);
+	}
+})
   });
+}
+
+
+// Code to load comments from searched image
+
+
+
+function queryDatabase(imageUrl) {
+	var promise = new Promise(function(resolve, reject) {
+		catsRef.where("imageUrl", "==", imageUrl)
+    	.get()
+    	.then(function(querySnapshot) {
+			resolve(querySnapshot)
+        /* querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        }); */
+    	})
+    	.catch(function(error) {
+        	reject("Error getting documents: ", error);
+		});
+	});
+	return promise;
+}
+
+function displayComments(docID) {
+	catsRef.doc(docID).get()
+	.then(function(doc) {
+		var commentsHTML = doc.data().comments.map(function(comment) {
+			return `<div class="comment">${comment}
+			</div>`;
+		});
+		document.getElementById('comments').innerHTML = commentsHTML.join('');
+	});
 }
