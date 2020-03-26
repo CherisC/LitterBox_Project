@@ -3,24 +3,32 @@
  var db = app.firestore();
  
  var catsRef = db.collection("Cats");
- var currentUser = firebase.auth().currentUser;
  var clickedImage;
  
- console.log(currentUser);
- // query database on page load and load comments if picture has been
- // commented on before 
- queryDatabase().then(function(data) {
-      if(data.docs.length) {
-        var imageArray = [];
-        var documentArray = [];
-        data.forEach(function(doc) {
-            imageArray.push(doc.data().imageUrl);
-            documentArray.push(doc.id);
+ var currentUser;
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+   currentUser = user;
+   
+    // query database on page load and load comments if picture has been
+    // commented on before 
+    queryDatabase(currentUser).then(function(data) {
+    if(data.docs.length) {
+      var imageArray = [];
+      var documentArray = [];
+      data.forEach(function(doc) {
+          imageArray.push(doc.data().imageUrl);
+          documentArray.push(doc.id);
         });
         displayLitterBox(imageArray, documentArray);
         displayComments(documentArray);
-    }
- })
+        }
+    })
+
+  }
+});
+ 
 
  function displayLitterBox(imageArray, documentArray) {
      var index = 0;
@@ -34,9 +42,9 @@
      document.getElementById("innerContainer").innerHTML = displayedImages.join("");
  }
  
- function queryDatabase() {
+ function queryDatabase(currentUser) {
      var promise = new Promise(function(resolve, reject) {
-         catsRef.where("userID", "==", "tim")
+         catsRef.where("userID", "==", currentUser.uid)
          .get()
          .then(function(querySnapshot) {
              resolve(querySnapshot)
@@ -109,15 +117,18 @@
          name: "fifo",
          comment: commentText
      } */
+
+     addComments(clickedImage, commentText);
+              event.target.elements.commentText.value = "";
  
-     queryDatabase().then(function(queryResult) {
+     /* queryDatabase().then(function(queryResult) {
          if(queryResult.docs.length === 0) {
              addCatToDatabase(data);
          } else {
               addComments(clickedImage, commentText);
               event.target.elements.commentText.value = "";
          }
-     })
+     }) */
      
       /* if(!returnedQuery) {
          addCatToDatabase("cats are cool", "www.google.com", "fifo", commentText);
