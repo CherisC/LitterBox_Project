@@ -1,42 +1,87 @@
+var app = firebase.initializeApp(firebaseConfig);
+var db = app.firestore();
+
+var catsRef = db.collection("Cats");
+
 window.addEventListener("DOMContentLoaded", event => {
-  console.log("DOM fully loaded and parsed");
+    console.log("DOM fully loaded and parsed");
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        var uiConfig = {
+            callbacks: {
+              signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                  return true;
+              },
+              uiShown: function() {
+                document.getElementById('loader').style.display = 'none';
+              }
+            },
+            signInFlow: 'popup',
+            signInSuccessUrl: 'myLitterBox.html',
+            signInOptions: [
+              firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+              firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+              firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+              firebase.auth.GithubAuthProvider.PROVIDER_ID
+                         ],
+            tosUrl: '<your-tos-url>',
+            privacyPolicyUrl: '<your-privacy-policy-url>'
+          };
+    ui.start('#firebaseui-auth-container', uiConfig);
+  });
 
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-  var ui = new firebaseui.auth.AuthUI(firebase.auth());
-  var uiConfig = {
-    callbacks: {
-      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-        const main = document.getElementById("main");
-        main.innerHTML = `<div class="container">
-                <div class="welcome">
-                    <h1 class="greeting">Welcome</h1>
-                    <div><img src="${authResult.user.photoURL}" /></div>
-                    <div id="userInfo">${authResult.user.displayName}</div>
-                </div>
-                <div class="logout">
-                    <button class="login-page" onlick="LoginPage">Logout</button>
-                </div>
-            </div>`;
-
-        return false;
-      },
-      uiShown: function() {
-        document.getElementById("loader").style.display = "none";
+  //Code for auth flow
+  firebase.auth().onAuthStateChanged(function(user) {
+    const signInButton = document.getElementById('sign-in');
+    const addCatButton = document.getElementById('add-cat');
+    if (user) {
+      // User is signed in.
+      if(signInButton){
+        signInButton.innerHTML = 'Sign Out';
+        signInButton.addEventListener('click', function(){
+          firebase.auth().signOut().then(() =>{
+              this.innerHTML = 'Sign In'
+          })
+        })
       }
-    },
-    signInFlow: "popup",
+      if(addCatButton) {
+        addCatButton.disabled = false;
+        addCatButton.addEventListener("click", function() {
+          addCatToDatabase(user);
+        })
+      }
+      // Once this fires it means we have successfully found a user and we should be on our myLitterBox.html page now.
+      //We will target the container inside of our dashboard using this line.
+      var dashboardContainer = document.getElementById('myLitterBox');
+      if (dashboardContainer) {
+        // If we made it here we are both on the correct HTML paged and we found the container that is inside of our dashboard.html
+        var userHTML = `<h1>Hello, ${user.displayName}</h1>
+                <p>Welcome to your litter box!</p>
+        `
+        dashboardContainer.innerHTML = userHTML;
+      }
+    } else {
+      // No user is signed in. So we add an event listener to the sign in button to open our sign in modal.
+      if(signInButton){
+        signInButton.addEventListener('click', function(event){
+          const modal = document.getElementById('modal');
+          modal.style.display = 'flex'
+        })
+      }
+    }
 
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID
-    ],
-    tosUrl: "<your-tos-url>",
-    privacyPolicyUrl: "<your-privacy-policy-url>"
-  };
-  ui.start("#firebaseui-auth-container", uiConfig);
-});
+
+
+
+  // Code to open & close sign in Modal in HOMEPAGE.
+  const modal = document.getElementById('modal');
+  if(modal){
+    modal.addEventListener('click', function(event){
+      if(event.target == modal || document.getElementById('close')){
+        modal.style.display = 'none'
+      }
+    })
+  }
+  });
 
 //this calls the change function when the page is loaded, so there's an image and text.
 document.addEventListener("DOMContentLoaded", change());
@@ -67,6 +112,7 @@ function change() {
   ]).then(response => {
     console.log(response);
     var catImgUrl = response[0].data[0].url;
+    localStorage.setItem("retrievedImage", catImgUrl);
     var index = randomNumber(0, response[1].data.all.length);
     var catFact = response[1].data.all[index].text;
     console.log({ img: catImgUrl, fact: catFact });
@@ -80,7 +126,7 @@ function change() {
             </div>
             
             <div class="col">
-            <img src="${catImgUrl}" class="rounded mx-auto d-block" alt="catImage">
+            <img id="cat-image" src="${catImgUrl}" class="rounded mx-auto d-block" alt="catImage">
             <h3 class="text-center">${catFact}</h3>
             </div>
             <div class="col">
@@ -89,5 +135,62 @@ function change() {
       </div>
 
             `;
+            return catImgUrl;
+  }).then(function(img) {
+      // query database on page load and load comments if picture has been
+      // commented on before 
+      queryDatabase(img).then(function(data) {
+	    if(data.docs.length) {
+		  displayComments(data.docs[0].id);
+	}
+})
+  });
+}
+
+
+// Code to load comments from searched image
+
+
+
+function queryDatabase(imageUrl) {
+	var promise = new Promise(function(resolve, reject) {
+		catsRef.where("imageUrl", "==", imageUrl)
+    	.get()
+    	.then(function(querySnapshot) {
+			resolve(querySnapshot)
+        /* querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        }); */
+    	})
+    	.catch(function(error) {
+        	reject("Error getting documents: ", error);
+		});
+	});
+	return promise;
+}
+
+function displayComments(docID) {
+	catsRef.doc(docID).get()
+	.then(function(doc) {
+		var commentsHTML = doc.data().comments.map(function(comment) {
+			return `<div class="comment">${comment}
+			</div>`;
+		});
+		document.getElementById('comments').innerHTML = commentsHTML.join('');
+	});
+}
+
+function addCatToDatabase(user) {
+  catsRef.add({
+      imageUrl: document.getElementById("cat-image").getAttribute("src"),
+      comments: [],
+      userID: user.uid
+  }).then(function(docRef) {
+    console.log("Added cat to database");
+      displayComments(docRef.id);
+  }).catch(function(error) {
+      console.error("Error adding document: ", error);
+      return error;
   });
 }
