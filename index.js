@@ -14,9 +14,6 @@ window.addEventListener("DOMContentLoaded", event => {
             signInSuccessUrl: 'myLitterBox.html',
             signInOptions: [
               firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-              firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-              firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-              firebase.auth.GithubAuthProvider.PROVIDER_ID
                          ],
             tosUrl: '<your-tos-url>',
             privacyPolicyUrl: '<your-privacy-policy-url>'
@@ -109,14 +106,13 @@ function change() {
     catBox.innerHTML = `
       <div class="container"> 
         <div class="row">
-            <div class="col">
-            
+            <div class="col-8">
             </div>
-            <div class="col">
-            <img src="${catImgUrl}" class="rounded mx-auto d-block" alt="catImage">
+            <div class="col-8">
+            <img src="${catImgUrl}" class="rounded mx-auto" alt="catImage">
             <h3 class="text-center">${catFact}</h3>
             </div>
-            <div class="col">
+            <div "col-8">
             </div>
         </div>
       </div>
