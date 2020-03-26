@@ -25,7 +25,6 @@ firebase.auth().onAuthStateChanged(function(user) {
         displayComments(documentArray);
         }
     })
-
   }
 });
  
@@ -111,29 +110,6 @@ firebase.auth().onAuthStateChanged(function(user) {
          return;
      }
      
-     /* var data = {
-         fact: "cats are cool",
-         imageUrl: catImage,
-         name: "fifo",
-         comment: commentText
-     } */
-
      addComments(clickedImage, commentText);
               event.target.elements.commentText.value = "";
- 
-     /* queryDatabase().then(function(queryResult) {
-         if(queryResult.docs.length === 0) {
-             addCatToDatabase(data);
-         } else {
-              addComments(clickedImage, commentText);
-              event.target.elements.commentText.value = "";
-         }
-     }) */
-     
-      /* if(!returnedQuery) {
-         addCatToDatabase("cats are cool", "www.google.com", "fifo", commentText);
-      } else {
-         console.log(returnedQuery);
-      } */
-      
  });
