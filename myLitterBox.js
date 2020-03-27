@@ -18,7 +18,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         signInButton.innerHTML = 'Sign Out';
         signInButton.addEventListener('click', function(){
           firebase.auth().signOut().then(() =>{
-              this.innerHTML = 'Sign In'
+              this.innerHTML = 'Log In'
           })
         })
       }
