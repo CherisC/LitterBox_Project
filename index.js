@@ -64,6 +64,14 @@ window.addEventListener("DOMContentLoaded", event => {
         dashboardContainer.innerHTML = userHTML;
       }
     } else {
+      if(addCatButton){
+        addCatButton.addEventListener("click", function() {
+          alert("You need to be signed in to add a cat to your LitterBox. Meow!")
+        })
+      }
+      if(myLitterBoxButton){
+        myLitterBoxButton.style.display = 'none'
+      }
       // No user is signed in. So we add an event listener to the sign in button to open our sign in modal.
       if(signInButton){
         signInButton.addEventListener('click', function(event){

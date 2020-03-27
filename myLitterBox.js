@@ -7,12 +7,21 @@
  
  var currentUser;
 firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
+    const signInButton = document.getElementById('sign-in');
+    if (user) {
     // User is signed in.
    currentUser = user;
    
     // query database on page load and load comments if picture has been
     // commented on before 
+    if(signInButton){
+        signInButton.innerHTML = 'Sign Out';
+        signInButton.addEventListener('click', function(){
+          firebase.auth().signOut().then(() =>{
+              this.innerHTML = 'Sign In'
+          })
+        })
+      }
     queryDatabase(currentUser).then(function(data) {
     if(data.docs.length) {
       var imageArray = [];
@@ -26,6 +35,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         }
     })
 
+  } else {
+      window.location = "/"
   }
 });
  
