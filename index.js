@@ -32,9 +32,13 @@ window.addEventListener("DOMContentLoaded", event => {
   //Code for auth flow
   firebase.auth().onAuthStateChanged(function(user) {
     const signInButton = document.getElementById('sign-in');
+    const myLitterBoxButton = document.getElementById('litter-box');
     const addCatButton = document.getElementById('add-cat');
     if (user) {
       // User is signed in.
+      if(myLitterBoxButton){
+        myLitterBoxButton.style.display = 'inline-block';
+      }
       if(signInButton){
         signInButton.innerHTML = 'Sign Out';
         signInButton.addEventListener('click', function(){
