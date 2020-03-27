@@ -17,7 +17,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="kitty.css" />
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
+    />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
@@ -28,7 +32,46 @@
       </div>
     </div>
     <div class="container" id="main">
-      <div class="jumbotron">
+      <nav
+        class="navbar navbar-expand-lg navbar-dark bg-navbarColor static-top"
+      >
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img src="cat graphic.png" alt="Cat Icon" class="image1" />
+          </a>
+          <h1>LitterBox</h1>
+          <!--<button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >-->
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <!--<li class="nav-item active">
+                <a class="nav-link" href="#">LitterBox
+                      <span class="sr-only">(current)</span>
+                    </a>
+              </li>-->
+
+              <li class="nav-item">
+                <!--<a class="nav-link" href="#">Sign up</a>-->
+                <button type="button" class="btn btn-light">Sign Up</button>
+              </li>
+              <li class="nav-item">
+                <!--<a class="nav-link" href="#">Log In</a>-->
+                <button type="button" class="btn btn-light">Log In</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!--<div class="jumbotron">
         <div id="catgraphic">
           <img src="cat graphic.png" alt="Cat Icon" class="image1" />
         </div>
@@ -37,15 +80,13 @@
       <div id="button">
         <button type="button" id="sign-in" class="btn btn-primary">Sign-In
         </button>
-      </div>
-      
+      </div>-->
+
       <!-- <div class="image-container">
         <img src="cat-pic.jpg" alt="Cat Image" class="image2" />
       </div> -->
-       <!-- below is where the picture and cat fact are rendered-->
-       <div id="catBox">
-        
-      </div>
+      <!-- below is where the picture and cat fact are rendered-->
+      <div id="catBox"></div>
 
       <!-- <div class="image-container">
         <img src="cat-pic.jpg" alt="Cat Image" class="image2" />
@@ -56,20 +97,22 @@
       </div> -->
 
       <div id="button">
-        <button type="button" class="btn btn-primary" id="generate">New Cat</button>
-        <button type="button" class="btn btn-primary" id="add-cat" disabled>Add Cat To LitterBox</button>
+        <button type="button" class="btn btn-light" id="generate">
+          New Cat
+        </button>
+        <button type="button" class="btn btn-light" id="add-cat" disabled>
+          Add Cat To LitterBox
+        </button>
       </div>
-      <div class="fact-container">
+      <!--<div class="fact-container">
         <p>Display cat fact here.</p>
       </div>
 
       <div id="button">
         <button type="button" class="btn btn-primary">Refresh</button>
-      </div>
+      </div>-->
     </div>
-    <div id="comments" class="comments">
-
-    </div>
+    <div id="comments" class="comments"></div>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
