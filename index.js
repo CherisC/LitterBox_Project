@@ -11,9 +11,6 @@ window.addEventListener("DOMContentLoaded", event => {
               signInSuccessWithAuthResult: function(authResult, redirectUrl) {
                   return true;
               },
-              uiShown: function() {
-                document.getElementById('loader').style.display = 'none';
-              }
             },
             signInFlow: 'popup',
             signInSuccessUrl: 'myLitterBox.html',
@@ -29,14 +26,18 @@ window.addEventListener("DOMContentLoaded", event => {
   //Code for auth flow
   firebase.auth().onAuthStateChanged(function(user) {
     const signInButton = document.getElementById('sign-in');
+    const myLitterBoxButton = document.getElementById('litter-box');
     const addCatButton = document.getElementById('add-cat');
     if (user) {
       // User is signed in.
+      if(myLitterBoxButton){
+        myLitterBoxButton.style.display = 'inline-block';
+      }
       if(signInButton){
         signInButton.innerHTML = 'Sign Out';
         signInButton.addEventListener('click', function(){
           firebase.auth().signOut().then(() =>{
-              this.innerHTML = 'Sign In'
+              this.innerHTML = 'Log In'
           })
         })
       }
@@ -57,6 +58,14 @@ window.addEventListener("DOMContentLoaded", event => {
         dashboardContainer.innerHTML = userHTML;
       }
     } else {
+      if(addCatButton){
+        addCatButton.addEventListener("click", function() {
+          alert("You need to be signed in to add a cat to your LitterBox. Meow!")
+        })
+      }
+      if(myLitterBoxButton){
+        myLitterBoxButton.style.display = 'none'
+      }
       // No user is signed in. So we add an event listener to the sign in button to open our sign in modal.
       if(signInButton){
         signInButton.addEventListener('click', function(event){
@@ -119,14 +128,12 @@ function change() {
     catBox.innerHTML = `
       <div class="container"> 
         <div class="row">
-            <div class="col">
-            </div>
             
             <div class="col">
-            <img id="cat-image" src="${catImgUrl}" class="rounded mx-auto d-block" alt="catImage">
-            <h3 class="text-center">${catFact}</h3>
+            <img id="cat-image" src="${catImgUrl}" class="rounded mx-auto d-block w-50" alt="catImage">
             </div>
-            <div "col-8">
+            <h3 class="text-center w-100">${catFact}</h3>
+            <div class="col">
             </div>
         </div>
       </div>

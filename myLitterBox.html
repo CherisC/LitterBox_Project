@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Litter Box</title>
+    <title>myLitterBox</title>
     <script src="apiKeys.js"></script>
-
+    <script src="firebase.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Serif+Display|Rozha+One|Vidaloka&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="kitty.css" />
   <style>
     body {
         /*background-image: url('pawprints.jpeg');*/
@@ -26,35 +37,33 @@
 </head>
 <body>
   <div id="container">
-    <!---changed the sign-in button to say "back to home page"-->
-    <!---linked the <a href="index.html">back to home page</a> button--->
-    <!--moved the container div to include the entire page--->
-    <!--changed text color in button to black-->
-    
-    <!--<div id="button">
-        <button type="button" id="sign-in" class="btn btn-primary"><a href="index.html" style="color: black;">back to home page</a> 
-              </button>
-    </div>--->
-    <!--<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-         
-        <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
-        <script src="firebase.js"></script>--->
-        <script src="index.js"></script>
-    
-      
-  <!--</div>  
-</body>
-</html>
-  <div id="container">--->
+
 <!---May need to do another CSS page to get different styling on this page-->
 <!--Added background pawprint. Still working with transparency property so that-->
 <!--changed transparency of page for other elements to show up better-->
-<div id="button">
-  <button type="button" id="sign-in" class="btn btn-primary"><a href="index.html" style="color: black;">back to home page</a> 
-        </button>
-</div>
-    <div id="myLitterBox">Meow</div>
+<nav class="row navbar navbar-expand-lg navbar-dark bg-navbarColor static-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="cat graphic.png" alt="Cat Icon" class="image1">
+      <h1>myLitterBox</h1>
+    </a>
+    
+    <div>
+      <ul class="navbar-nav ml-auto">
+        
+        <li class="nav-item">
+          <!--<a class="nav-link" href="#">Sign up</a>-->
+          <a href='index.html' ><button type="button" class="btn btn-light">Go Home</button> </a>
+        </li>
+        <li class="nav-item">
+          <!--<a class="nav-link" href="#">Log In</a>-->
+          <button type="button" id="sign-in" class="btn btn-light">Log In</button>
+        </li>
+      </ul>
+    
+    </div>
+  </div>
+</nav>
     
         <div id="innerContainer" style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
             
