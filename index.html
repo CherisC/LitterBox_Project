@@ -10,8 +10,6 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    <script src="apiKeys.js"></script>
     <link
       href="https://fonts.googleapis.com/css?family=DM+Serif+Display|Rozha+One|Vidaloka&display=swap"
       rel="stylesheet"
@@ -23,13 +21,38 @@
       href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
     />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <script defer src=index.js></script>
   </head>
   <body>
-    <div id="modal">
-      <div>
-        <button id="close">X</button>
-        <div id="firebaseui-auth-container"></div>
-      </div>
+      <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-navbarColor static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+          <img src="cat graphic.png" alt="Cat Icon" class="image1">
+        </a>
+        <h1>LitterBox</h1>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+
+        <!--<li class="nav-item active">
+          <a class="nav-link" href="#">LitterBox
+                <span class="sr-only">(current)</span>
+              </a>
+        </li>-->
+
+        <li class="nav-item">
+          <!--<a class="nav-link" href="#">Sign up</a>-->
+          <button type="button" class="btn btn-light">Sign Up</button>
+        </li>
+        <li class="nav-item">
+          <!--<a class="nav-link" href="#">Log In</a>-->
+          <button type="button" class="btn btn-light">Log In</button>
+        </li>
+      </ul>
     </div>
     <div class="container" id="main">
       <nav
