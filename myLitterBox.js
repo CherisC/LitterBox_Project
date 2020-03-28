@@ -44,10 +44,18 @@ firebase.auth().onAuthStateChanged(function(user) {
  function displayLitterBox(imageArray, documentArray) {
      var index = 0;
      var displayedImages = imageArray.map(function(image) {
-        return `<div>
-        <img src="${image}" width="200" height="200" onclick="commentOnImage('${documentArray[index]}')">
-        <div id="img-${documentArray[index++]}"></div>
-        </div>`
+        return `
+        <div>
+            <img src="${image}" width="200" height="200" onclick="commentOnImage('${documentArray[index]}')">
+            <div id="img-${documentArray[index++]}"></div>
+        
+
+            <form action="" id="commentForm" style="display: flex; flex-direction: column;">
+                <textarea id="textarea-container" name="commentText" id="" style="width:"200"; height: "200";" placeholder="Add a comment"></textarea>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+        `
      })
     
      document.getElementById("innerContainer").innerHTML = displayedImages.join("");
