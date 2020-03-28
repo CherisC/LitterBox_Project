@@ -44,6 +44,7 @@ window.addEventListener("DOMContentLoaded", event => {
       if(addCatButton) {
         addCatButton.disabled = false;
         addCatButton.addEventListener("click", function() {
+          alert("Meow! This cat has been added to your LitterBox! Click 'Go to myLitterBox' to see it!")
           addCatToDatabase(user);
         })
       }

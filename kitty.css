@@ -46,6 +46,10 @@ h3 {
   font-family: Georgia;
 }
 
+h2, ul {
+  font-family: Georgia;
+}
+
 button {
   margin: 5px;
 }
