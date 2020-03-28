@@ -48,12 +48,6 @@ firebase.auth().onAuthStateChanged(function(user) {
         <div>
             <img src="${image}" width="200" height="200" onclick="commentOnImage('${documentArray[index]}')">
             <div id="img-${documentArray[index++]}"></div>
-        
-
-            <form action="" id="commentForm" style="display: flex; flex-direction: column;">
-                <textarea id="textarea-container" name="commentText" id="" style="width:"200"; height: "200";" placeholder="Add a comment"></textarea>
-                <button class="btn btn-primary" type="submit">Submit</button>
-            </form>
         </div>
         `
      })
@@ -75,20 +69,20 @@ firebase.auth().onAuthStateChanged(function(user) {
      return promise;
  }
  
- function addCatToDatabase(data) {
-     catsRef.add({
-         fact: data.fact,
-         imageUrl: data.imageUrl,
-         name: data.name,
-         comments: [data.comment],
-         userID: currentUser.uid
-     }).then(function(docRef) {
-         displayComments(docRef.id);
-     }).catch(function(error) {
-         console.error("Error adding document: ", error);
-         return error;
-     });
- }
+//  function addCatToDatabase(data) {
+//      catsRef.add({
+//          fact: data.fact,
+//          imageUrl: data.imageUrl,
+//          name: data.name,
+//          comments: [data.comment],
+//          userID: currentUser.uid
+//      }).then(function(docRef) {
+//          displayComments(docRef.id);
+//      }).catch(function(error) {
+//          console.error("Error adding document: ", error);
+//          return error;
+//      });
+//  }
  
  function addComments(docID, comment) {
      // Atomically add a new region to the "regions" array field.
