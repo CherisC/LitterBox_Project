@@ -17,6 +17,9 @@ h1 {
   justify-content: left;
 }
 
+.comment {
+  background-color: white;
+}
 .bg-navbarColor {
   background-color: lightskyblue;
 }

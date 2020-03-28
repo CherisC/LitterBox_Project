@@ -16,9 +16,6 @@ window.addEventListener("DOMContentLoaded", event => {
             signInSuccessUrl: 'myLitterBox.html',
             signInOptions: [
               firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-              firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-              firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-              firebase.auth.GithubAuthProvider.PROVIDER_ID
                          ],
             tosUrl: '<your-tos-url>',
             privacyPolicyUrl: '<your-privacy-policy-url>'

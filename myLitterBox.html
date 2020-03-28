@@ -36,16 +36,16 @@
   </style>
 </head>
 <body>
-  <div id="container">
+<div id="container">
 
 <!---May need to do another CSS page to get different styling on this page-->
 <!--Added background pawprint. Still working with transparency property so that-->
 <!--changed transparency of page for other elements to show up better-->
 <nav class="row navbar navbar-expand-lg navbar-dark bg-navbarColor static-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand d-inline-flex" href="index.html">
       <img src="cat graphic.png" alt="Cat Icon" class="image1">
-      <h1>myLitterBox</h1>
+      <h1 style="padding: 10 0 0 0">myLitterBox</h1>
     </a>
     
     <div>
@@ -64,20 +64,17 @@
     </div>
   </div>
 </nav>
-    
+<br />
         <div id="innerContainer" style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
-            
-        </div>
-        <div style="display: flex; justify-content: center; margin: 20px 0 20px 0">
-            <form action="" id="commentForm" style="display: flex; flex-direction: column;">
-                <textarea id="textarea-container" name="commentText" id="" cols="30" rows="10" placeholder="Add a comment"></textarea>
-                <button class="btn btn-primary" type="submit">Submit</button>
-            </form>
         </div>
         <!--<a href="index.html" style="display: flex; justify-content: center; color: black;">Go back to Search Page</a>--->  
-        <div class="comments" id="comments" style="display: flex; flex-direction: column; justify-content: space-between;">
-        </div>
-    </div>
+        <div style="display: flex; justify-content: center; margin: 20px 0 20px 0">
+          <form action="" id="commentForm" style="display: flex; flex-direction: column;">
+              <textarea id="textarea-container" name="commentText" id="" cols="30" rows="10" placeholder="Add a comment"></textarea>
+              <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+      </div>
+</div>
     
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
