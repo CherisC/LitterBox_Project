@@ -154,19 +154,12 @@ function change() {
 
 
 // Code to load comments from searched image
-
-
-
 function queryDatabase(imageUrl) {
 	var promise = new Promise(function(resolve, reject) {
 		catsRef.where("imageUrl", "==", imageUrl)
     	.get()
     	.then(function(querySnapshot) {
 			resolve(querySnapshot)
-        /* querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-        }); */
     	})
     	.catch(function(error) {
         	reject("Error getting documents: ", error);
