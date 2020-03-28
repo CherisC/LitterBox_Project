@@ -5,27 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Litter Box</title>
     <script src="apiKeys.js"></script>
-
-<style>
+    <script src="firebase.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Serif+Display|Rozha+One|Vidaloka&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="kitty.css" />
+  <style>
     body {
-        background-image: url('pawprints.jpeg');
+        /*background-image: url('pawprints.jpeg');*/
         margin: 0px;
     }
-    img {
+    /*img {
       opacity: 0.1;
-    }
+    }*/
     #container {
       width: 100vw; 
       height: 100vh;
       background-color: rgba(178, 224, 240, 0.892);
+      background-image: url('pawprints.jpeg');
+      
     }
 
   </style>
 </head>
 <body>
-  <a href="kitty.html">&larr;</a>
-    <div id="myLitterBox">Meow</div>
-    <div id="container">
+  <div id="container">
+
+<!---May need to do another CSS page to get different styling on this page-->
+<!--Added background pawprint. Still working with transparency property so that-->
+<!--changed transparency of page for other elements to show up better-->
+<nav class="row navbar navbar-expand-lg navbar-dark bg-navbarColor static-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="cat graphic.png" alt="Cat Icon" class="image1">
+      <h1>myLitterBox</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        
+        <li class="nav-item">
+          <!--<a class="nav-link" href="#">Sign up</a>-->
+          <a href='index.html' ><button type="button" class="btn btn-light">Go Home</button> </a>
+        </li>
+        <li class="nav-item">
+          <!--<a class="nav-link" href="#">Log In</a>-->
+          <button type="button" id="sign-in" class="btn btn-light">Log In</button>
+        </li>
+      </ul>
+    
+    </div>
+  </div>
+</nav>
+<div id="myLitterBox">Meow</div>
+    
         <div id="innerContainer" style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
             
         </div>
@@ -35,7 +77,7 @@
                 <button class="btn btn-primary" type="submit">Submit</button>
             </form>
         </div>
-        <a href="kitty.html" style="display: flex; justify-content: center;">Go back to Search Page</a>  
+        <!--<a href="index.html" style="display: flex; justify-content: center; color: black;">Go back to Search Page</a>--->  
         <div class="comments" id="comments" style="display: flex; flex-direction: column; justify-content: space-between;">
         </div>
     </div>
@@ -45,5 +87,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
     <script src="myLitterBox.js"></script>
+
+  </div>
 </body>
 </html>
+<!---changed kitty.html to index.html in Search box-->
+<!--remove the "Go back to Search" button to leave one "return to home page button"-->
