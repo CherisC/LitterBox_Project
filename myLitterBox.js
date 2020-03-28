@@ -107,10 +107,21 @@ firebase.auth().onAuthStateChanged(function(user) {
      });
  }
  
+ var prevClickedImg;
  function commentOnImage(imgID) {
+      
     clickedImage = imgID;
+    // adding border to image when clicked
+    event.target.style = "border: solid black 5px";
+    // prevClickedImg while not have a value first time so this if statement will not
+    // run. after first time this function runs prevClickedImg will store the img element
+    // of previously clicked on image. In the if statement the style is set to empty to remove
+    // border.
+    if(prevClickedImg) {
+        prevClickedImg.style = "";
+    }
+    prevClickedImg = event.target;
  }
-
  var commentForm = document.getElementById('commentForm');
  
  commentForm.addEventListener('submit', function(event) {
