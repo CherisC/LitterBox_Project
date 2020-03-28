@@ -46,17 +46,14 @@ h1 {
   margin-right: auto;
 }
 
-/*.img1 {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  width: 100px;
-}*/
-
 h3 {
   text-align: center;
   font-size: 20px;
   margin-top: 10px;
+  font-family: Georgia;
+}
+
+h2, ul {
   font-family: Georgia;
 }
 
@@ -65,8 +62,8 @@ button {
 }
 
 .image1 {
-  width: 5vw;
-  height: 10vh;
+  width: 50px;
+ 
 }
 
 #modal {
@@ -112,22 +109,6 @@ button {
   align-self: flex-end;
 }
 
-/*.navigation-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-.img2 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  display: flex;
-  align-self: flex-start;
-  justify-content: center;
-}
-*/
 .bg-navbarColor {
   background-color: lightskyblue;
 }
@@ -151,10 +132,10 @@ button {
   margin: 5px;
 }
 
-#catgraphic {
+/*#catgraphic {
   width: 10vw;
   height: 20vh;
-}
+}*/
 
 #catgraphic img {
   width: 100%;
