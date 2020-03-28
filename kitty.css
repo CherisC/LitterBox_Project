@@ -17,13 +17,27 @@ h1 {
   justify-content: left;
 }
 
-.comment {
-  background-color: white;
+.LitterBox-comment {
+  display: flex;
+  background-color: rgb(146, 153, 159);
+  font: 1.0em cursive;
+  color: black;
+  flex-wrap: wrap;
+  width: 200px;
 }
+
 .bg-navbarColor {
   background-color: lightskyblue;
 }
 
+.comment {
+  margin: auto;
+  background-color: white;
+  text-align: center;
+  width: 40pc;
+  font: 1.0em cursive;
+  flex-wrap: wrap;
+}
 .container {
   background-color: lightskyblue;
   width: 100%;
@@ -165,3 +179,4 @@ button {
   justify-content: center;
   padding: 10px;
 }
+

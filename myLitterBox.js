@@ -103,7 +103,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         catsRef.doc(docID).get()
         .then(function(doc) {
          var commentsHTML = doc.data().comments.map(function(comment) {
-             return `<div class="comment">${comment}
+             return `<div class="LitterBox-comment">${comment}
              </div>`;
          });
          document.getElementById(`img-${docID}`).innerHTML = commentsHTML.join('');
