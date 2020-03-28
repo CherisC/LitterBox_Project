@@ -17,6 +17,9 @@ h1 {
   justify-content: left;
 }
 
+.comment {
+  background-color: white;
+}
 .bg-navbarColor {
   background-color: lightskyblue;
 }
@@ -71,6 +74,16 @@ button {
   width: 25%;
   display: flex;
   flex-direction: column;
+}
+
+#cat-container {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0; */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #litter-box {

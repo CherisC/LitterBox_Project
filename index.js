@@ -11,17 +11,11 @@ window.addEventListener("DOMContentLoaded", event => {
               signInSuccessWithAuthResult: function(authResult, redirectUrl) {
                   return true;
               },
-              uiShown: function() {
-                document.getElementById('loader').style.display = 'none';
-              }
             },
             signInFlow: 'popup',
             signInSuccessUrl: 'myLitterBox.html',
             signInOptions: [
               firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-              firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-              firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-              firebase.auth.GithubAuthProvider.PROVIDER_ID
                          ],
             tosUrl: '<your-tos-url>',
             privacyPolicyUrl: '<your-privacy-policy-url>'
@@ -43,7 +37,7 @@ window.addEventListener("DOMContentLoaded", event => {
         signInButton.innerHTML = 'Sign Out';
         signInButton.addEventListener('click', function(){
           firebase.auth().signOut().then(() =>{
-              this.innerHTML = 'Sign In'
+              this.innerHTML = 'Log In'
           })
         })
       }
@@ -134,13 +128,11 @@ function change() {
     catBox.innerHTML = `
       <div class="container"> 
         <div class="row">
-            <div class="col">
-            </div>
             
             <div class="col">
-            <img id="cat-image" src="${catImgUrl}" class="rounded mx-auto d-block" alt="catImage">
-            <h3 class="text-center">${catFact}</h3>
+            <img id="cat-image" src="${catImgUrl}" class="rounded mx-auto d-block w-50" alt="catImage">
             </div>
+            <h3 class="text-center w-100">${catFact}</h3>
             <div class="col">
             </div>
         </div>

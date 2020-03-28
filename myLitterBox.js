@@ -18,7 +18,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         signInButton.innerHTML = 'Sign Out';
         signInButton.addEventListener('click', function(){
           firebase.auth().signOut().then(() =>{
-              this.innerHTML = 'Sign In'
+              this.innerHTML = 'Log In'
           })
         })
       }
@@ -44,10 +44,12 @@ firebase.auth().onAuthStateChanged(function(user) {
  function displayLitterBox(imageArray, documentArray) {
      var index = 0;
      var displayedImages = imageArray.map(function(image) {
-        return `<div>
-        <img src="${image}" width="200" height="200" onclick="commentOnImage('${documentArray[index]}')">
-        <div id="img-${documentArray[index++]}"></div>
-        </div>`
+        return `
+        <div>
+            <img src="${image}" width="200" height="200" onclick="commentOnImage('${documentArray[index]}')">
+            <div id="img-${documentArray[index++]}"></div>
+        </div>
+        `
      })
     
      document.getElementById("innerContainer").innerHTML = displayedImages.join("");
@@ -67,20 +69,20 @@ firebase.auth().onAuthStateChanged(function(user) {
      return promise;
  }
  
- function addCatToDatabase(data) {
-     catsRef.add({
-         fact: data.fact,
-         imageUrl: data.imageUrl,
-         name: data.name,
-         comments: [data.comment],
-         userID: currentUser.uid
-     }).then(function(docRef) {
-         displayComments(docRef.id);
-     }).catch(function(error) {
-         console.error("Error adding document: ", error);
-         return error;
-     });
- }
+//  function addCatToDatabase(data) {
+//      catsRef.add({
+//          fact: data.fact,
+//          imageUrl: data.imageUrl,
+//          name: data.name,
+//          comments: [data.comment],
+//          userID: currentUser.uid
+//      }).then(function(docRef) {
+//          displayComments(docRef.id);
+//      }).catch(function(error) {
+//          console.error("Error adding document: ", error);
+//          return error;
+//      });
+//  }
  
  function addComments(docID, comment) {
      // Atomically add a new region to the "regions" array field.
